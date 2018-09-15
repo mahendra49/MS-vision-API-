@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.container
+		{
+			margin: 6% auto;
+			width: 500px;
+			height: 500px;
+			background-color: #e8e8e8;
+			border:4px solid white;
+			border-radius: 6px;
+			box-shadow: 0px 0px 10px #888888;
+			padding: 2%;
+		}
+		.container .previewimg
+		{
+			margin-bottom: 6%;
+		}
+		.container .previewimg>img
+		{
+			width: 260px;
+			height: 250px;
+			display: block;
+			margin: 0px auto;
+			border-radius: 6px;
+			box-shadow: 0px 0px 4px black;
+		}
+		.container .formelements>.file,.container .formelements>.button
+		{
+			display: block;
+			margin:6% auto;
+			
+		}
+		.container .formelements>input[type=file]
+		{
+			//background-color: lightblue;
+			border-radius: 2px;
+			padding: 4%;
+			//background-color: black;
+			//box-shadow: 0px 0px 2px #888888;
+		}
+		.container .formelements>.button
+		{
+			border:0px;
+			width: 40%;
+			padding: 4%;
+			border-radius: 6px;
+			background-color: #333333;
+			color:#fff;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='responsivevoice.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			    $("#but_upload").click(function(){
+			        var fd = new FormData();
+			        var files = $('#file')[0].files[0];
+			        fd.append('file',files);
+
+			        $.ajax({
+			            url: 'https://python-mahi100.c9users.io/uploader',
+			            type: 'post',
+			            data: fd,
+			            contentType: false,
+			            processData: false,
+			            success: function(response){
+			            	//console.log(response);
+			            	var obj=JSON.parse(response);
+			            	//alert(obj.description.captions[0].text);
+			            	responsiveVoice.speak(obj.description.captions[0].text);
+			                console.log(obj.description.captions[0].text);
+			                document.getElementById("u1").innerHTML = obj.description.captions[0].text;
+			             // console.log(typeof response);
+			             // console.log(JSON.stringify(response.description));
+			            },
+			        });
+			    });
+			    
+			    $("#file").on('change',function(){
+			    		  var preview = document.querySelector('img');
+						  var file    = document.querySelector('input[type=file]').files[0];
+						  var reader  = new FileReader();
+
+						  reader.addEventListener("load", function () {
+						    preview.src = reader.result;
+						  }, false);
+
+						  if (file) {
+						    reader.readAsDataURL(file);
+						  }
+			    });
+			});
+	</script>
+
+</head>
+<body>
+	<div class="container">
+	<form method="post" action="" enctype="multipart/form-data" id="myform">
+        <div >
+            <img src="" id="img" width="100" height="100" width="100" height="100">
+        </div>
+        <div class="formelements">
+            <input type="file" id="file" name="file"  class="file"/>
+            <input type="button" class="button" value="Upload" id="but_upload">
+        </div>
+    </form>
+    <h1 id="u1"></h1>
+    </div>
+</body>
+</html>
