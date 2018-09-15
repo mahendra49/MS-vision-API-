@@ -79,6 +79,8 @@
                             console.log(obj);
                             //alert(obj.description.captions[0].text);
                             responsiveVoice.speak(obj.description.captions[0].text);
+    		                document.getElementById("u1").innerHTML = obj.description.captions[0].text;
+
                             console.log(obj.description.captions[0].text);
                             
                          // console.log(typeof response);
@@ -117,6 +119,7 @@
 	            <input type="button" class="button" value="Upload" id="but_upload">
 	        </div>
     	</form>
+    	<h1 id="u1"></h1>
 	</div>
 </body>
 </html>
