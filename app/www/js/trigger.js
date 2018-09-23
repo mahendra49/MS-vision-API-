@@ -44,7 +44,8 @@ function capturePhotoWithData() {
 }
 
 function onFail(message) {
-    alert('Failed because: ' + message);
+    responsiveVoice.speak("I'm having problem with camera,try again");
+    //alert('Failed because: ' + message);
 }
 
 

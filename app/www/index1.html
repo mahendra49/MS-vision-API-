@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <!-- styles here -->
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+        <title>Hello World</title>
+        
+        <!-- scripts here -->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/trigger.js"></script>
+        <!-- <script type="text/javascript" src="js/trigger.js"></script> -->
+        <script type="text/javascript" src="js/responsivevoice.js"></script>
+        <!-- <script src="http://192.168.0.2:8080/target/target-script-min.js#anonymous"></script> -->
+        
+        <style type="text/css">
+            button {
+                background-color: #008CBA;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+            }
+            .myv_align
+            {
+                display: block;
+                margin: 10% auto;
+                animation-name: myv_beat;
+                animation-duration: 3.5s;
+                animation-iteration-count: infinite;
+                border-radius:50%;
+                margin:40% auto;
+
+            }
+            /* The animation code */
+            @keyframes myv_beat {
+                    0%   {box-shadow: 0px 0px 10px #fff}
+                    25%  {box-shadow: 0px 0px 10px #4CAF50}
+                    50%  {box-shadow: 0px 0px 10px #fff}
+                    75%  {box-shadow: 0px 0px 10px #4CAF50}
+                    100% {box-shadow: 0px 0px 10px #fff}
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- <h1>MY vision</h1>
+        <button onclick="capturePhotoWithData();">Capture Photo</button> <br><br>
+        <button onclick="holla()">click me for sound</button><br><br><br> -->
+        
+        <img onclick="capturePhotoWithData()" src="img/green.png" width="350" height="350" alt="MYV" class="myv_logo myv_align">
+        <button onclick="hey()">Im also woriking</button>
+        
+        <script type="text/javascript">
+            responsiveVoice.speak("welcome to my vision");
+            function hey(){
+               responsiveVoice.speak("hello world");
+            }
+        </script>
+        
+    </body>
+</html>

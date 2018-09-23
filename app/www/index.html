@@ -1,57 +1,115 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+	<style type="text/css">
+		.myv_welcome
+		{
+			width:300px;
+			height:300px;
+			margin:10% auto;
+			margin: 45% 20%;
+		}
+		.myv_loading
+		{
+			width: 210px;
+			height: 10px;
+			/*margin: 4% auto;*/
+			border:1px solid lightgreen;
+			//border-radius: 50%;
+			border-radius: 20px;
+		}
+		.myv_loading>.myv_cell1
+		{
+			-webkit-border-top-left-radius: 20px;
+			-webkit-border-bottom-left-radius: 20px;
+			-moz-border-radius-topleft: 20px;
+			-moz-border-radius-bottomleft: 20px;
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+		}
+		.myv_loading>.myv_cell5
+		{
+			-webkit-border-top-right-radius: 20px;
+			-webkit-border-bottom-right-radius: 20px;
+			-moz-border-radius-topright: 20px;
+			-moz-border-radius-bottomright: 20px;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+		}
+		.myv_loading>.myv_cell1,.myv_loading>.myv_cell2,.myv_loading>.myv_cell3,.myv_loading>.myv_cell4,.myv_loading>.myv_cell5
+		{
+			width: 40px;
+			height: 10px;
+			border:1px solid lightgreen;	
+			float: left;
+		}
+		.myv_title
+		{
+			width: 200px;			
+		}
+		.myv_title>span
+		{
 
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+			font-family:myv_font;
+			font-size: 50px;
+			visibility: hidden;
+			display: block;
+			text-align: center;
 
-        <!-- styles here -->
-        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
-        <title>Hello World</title>
-        <!-- scripts here -->
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/trigger.js"></script>
-        <!-- <script type="text/javascript" src="js/trigger.js"></script> -->
-        <script type="text/javascript" src="js/responsivevoice.js"></script>
-        <!-- <script src="http://192.168.0.2:8080/target/target-script-min.js#anonymous"></script> -->
-        
+		}
 
-    </head>
-
-    <body>
-        <h1>Holla</h1>
-        <button onclick="capturePhotoWithData();">Capture Photo With Image Data</button> <br>
-        <button onclick="holla()">click me for sound</button>
-        <button onclick="hey()">Im also woriking</button>
-        <button onclick="checkConnection()">check connection</button>
-
-        <script type="text/javascript">
-            responsiveVoice.speak("welcome");
-            function hey(){
-               responsiveVoice.speak("hello world");
-            }
-        </script>
-        
-    </body>
+	</style>
+	<script type="text/javascript">
+		var cells=new Array("myv_cell1","myv_cell2","myv_cell3","myv_cell4","myv_cell5");
+		var start_index=0;
+		var end_index=4;
+		var myv_delay=4000;
+		function  loading() {
+				document.getElementById(cells[start_index]).style.backgroundColor="lightgreen";
+				document.getElementById(cells[end_index]).style.backgroundColor="lightgreen";
+				if(start_index<=2&&end_index>=2)
+				{
+					start_index=start_index+1;
+					end_index=end_index-1;
+					console.log(start_index);
+					console.log(end_index);
+					if(start_index>end_index)
+					{
+						myv_delay=1000;
+					}	
+				}				
+				else if(start_index>end_index)
+				{
+					document.getElementById("myv").style.visibility="visible";
+					setTimeout(function(){window.location.replace("index1.html");},500);
+					return 0;
+				}	
+				setTimeout(
+					function(){
+							loading();
+					},myv_delay
+				);
+		}
+		
+	</script>
+</head>
+<body onload="loading()">
+	
+		<div class="myv_welcome">
+			<div class="myv_title">
+				<span id="myv">myv</span>
+			</div>
+			<div class="myv_loading">
+				<div class="myv_cell1" id="myv_cell1"></div>
+				<div class="myv_cell2" id="myv_cell2"></div>
+				<div class="myv_cell3" id="myv_cell3"></div>
+				<div class="myv_cell4" id="myv_cell4"></div>
+				<div class="myv_cell5" id="myv_cell5"></div>
+			</div>
+		</div>
+	
+	<!-- <button type="button" onclick="loading()">click</button> -->
+</body>
 </html>
