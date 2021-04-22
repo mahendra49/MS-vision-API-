@@ -23,7 +23,7 @@ def hello_world():
         
         data1=request.get_json()
         
-        print(data1["img_data"],file=sys.stderr)
+        #print(data1["img_data"],file=sys.stderr)
         #print(type(data1),file=sys.stderr)  
         data=data1["img_data"]
         img_data=str.encode(data)
@@ -34,7 +34,7 @@ def hello_world():
         #return json.dumps({"holla":"bollasa"})
 
         # Replace <Subscription Key> with your valid subscription key.
-        subscription_key = "b41d2e701e644fefad8e3ec994dfe0c9"
+        subscription_key = "5a0fba5353f640b9aa437c5a9d6a1a4a"
         assert subscription_key
 
         # You must use the same region in your REST call as you used to get your
@@ -44,9 +44,9 @@ def hello_world():
         # Free trial subscription keys are generated in the westcentralus region.
         # If you use a free trial subscription key, you shouldn't need to change
         # this region.
-        vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
+        vision_base_url = "https://myvision2507.cognitiveservices.azure.com/vision/v3.2/analyze?visualFeatures=Categories,Description&details=Landmarks"
 
-        analyze_url = vision_base_url + "describe"
+        #analyze_url = vision_base_url + "describe"
 
         # Set image_path to the local path of an image that you want to analyze.
         image_path = filepath
@@ -56,8 +56,8 @@ def hello_world():
         headers    = {'Ocp-Apim-Subscription-Key': subscription_key,
                       'Content-Type': 'application/octet-stream'}
         params     = {'visualFeatures': 'Categories,Description,Color'}
-        response = requests.post(analyze_url, headers=headers, params=params, data=image_data)
-        response.raise_for_status()
+        response = requests.post(vision_base_url, headers=headers, params=params, data=image_data)
+        #response.raise_for_status()
 
         # The 'analysis' object contains various fields that describe the image. The most
         # relevant caption for the image is obtained from the 'description' property.
